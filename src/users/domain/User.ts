@@ -60,6 +60,10 @@ export class User {
     return this._email;
   }
 
+  get password(): Password {
+    return this._password;
+  }
+
   updateName(name: string): void {
     if (!name || name.trim().length === 0) {
       throw new Error("Name cannot be empty.");
