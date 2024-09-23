@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { env } from "./config/env.config";
 import pool from "./config/db.config";
+import { userRouter } from "./users/infrastructure/userRoutes";
 
 const app = express();
 const PORT = env.listen.port;
@@ -20,6 +21,8 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+app.use("/api/v1/users", userRouter);
 
 app.get("/", (_req, res) => {
   res.send(`API funcionando en el puerto ${PORT}`);
