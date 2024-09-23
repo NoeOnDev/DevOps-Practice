@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "../application/use-cases/CreateUserUseCase";
-import { CreateUserDTO } from "../application/dtos/CreateUserDTO";
+import { CreateUserUseCase } from "../../application/use-cases/CreateUserUseCase";
+import { CreateUserDTO } from "../../application/dtos/CreateUserDTO";
 
 export class CreateUserController {
   private createUserUseCase: CreateUserUseCase;
