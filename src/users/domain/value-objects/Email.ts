@@ -20,4 +20,8 @@ export class Email {
   public getValue(): string {
     return this.value;
   }
+
+  public equals(email: Email): boolean {
+    return this.value === email.getValue();
+  }
 }
