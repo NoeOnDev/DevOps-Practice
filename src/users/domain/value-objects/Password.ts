@@ -1,4 +1,4 @@
-import * as bcrypt from "bcrypt";
+import { Hasher } from "./Hasher";
 
 export class Password {
   private readonly value: string;
@@ -7,10 +7,8 @@ export class Password {
     this.value = hashedPassword;
   }
 
-  public static create(plainPassword: string): Password {
-    const saltRounds = 10;
-    const hashedPassword = bcrypt.hashSync(plainPassword, saltRounds);
-    return new Password(hashedPassword);
+  public static create(plainPassword: string, hasher: Hasher): Password {
+    return new Password(hasher.hash(plainPassword));
   }
 
   public static reconstitute(hashedPassword: string): Password {
@@ -21,7 +19,7 @@ export class Password {
     return this.value;
   }
 
-  public compare(plainPassword: string): boolean {
-    return bcrypt.compareSync(plainPassword, this.value);
+  public compare(plainPassword: string, hasher: Hasher): boolean {
+    return hasher.compare(plainPassword, this.value);
   }
 }
